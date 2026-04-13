@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="su">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Warisan budaya dan kuliner Sunda - Website responsif dengan scaling sempurna di semua device">
+    <title>Urang Sunda - Warisan Budaya Responsif</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sundanese&family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables dengan Fluid Scaling */
+        :root {
+            /* Colors */
+            --hijau-tua: #0f3d2e;
+            --hijau-muda: #2d6a4f;
+            --hijau-cerah: #52b788;
+            --coklat-tanah: #8b5a2b;
+            --coklat-muda: #d4a373;
+            --krem: #fefae0;
+            --putih: #ffffff;
+            --hitam: #1a1a1a;
+            --emas: #c9a227;
+            
+            /* Fluid Typography Scale - menggunakan clamp() */
+            --font-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);   /* 12-14px */
+            --font-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);      /* 14-16px */
+            --font-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);  /* 16-18px */
+            --font-lg: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);     /* 18-24px */
+            --font-xl: clamp(1.25rem, 1.1rem + 0.75vw, 2rem);       /* 20-32px */
+            --font-2xl: clamp(1.5rem, 1.3rem + 1vw, 2.5rem);        /* 24-40px */
+            --font-3xl: clamp(2rem, 1.5rem + 2.5vw, 4rem);          /* 32-64px */
+            --font-4xl: clamp(2.5rem, 2rem + 3vw, 5rem);             /* 40-80px */
+            
+            /* Fluid Spacing Scale */
+            --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+            --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+            --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+            --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+            --space-xl: clamp(2rem, 1.5rem + 2.5vw, 4rem);
+            --space-2xl: clamp(3rem, 2rem + 5vw, 6rem);
+            
+            /* Container Widths */
+            --container-sm: min(100% - 2rem, 640px);
+            --container-md: min(100% - 2rem, 768px);
+            --container-lg: min(100% - 2rem, 1024px);
+            --container-xl: min(100% - 2rem, 1280px);
+            --container-2xl: min(100% - 2rem, 1400px);
+            
+            /* Border Radius Fluid */
+            --radius-sm: clamp(0.375rem, 0.3rem + 0.35vw, 0.5rem);
+            --radius-md: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+            --radius-lg: clamp(0.75rem, 0.6rem + 0.75vw, 1.5rem);
+            --radius-xl: clamp(1rem, 0.8rem + 1vw, 2rem);
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Reset & Base Styles - Mobile First */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: var(--font-base);
+            line-height: 1.6;
+            color: var(--hitam);
+            background-color: var(--krem);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Container Queries Setup */
+        .container-query {
+            container-type: inline-size;
+            width: 100%;
+        }
+
+        /* Header & Navigation - Mobile First */
+        header {
+            background: rgba(15, 61, 46, 0.98);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            border-bottom: 2px solid var(--emas);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-sm) var(--space-md);
+            width: var(--container-2xl);
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--putih);
+            font-size: var(--font-xl);
+            font-weight: 700;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            min-height: 48px; /* Touch target */
+        }
+
+        .logo i {
+            font-size: var(--font-2xl);
+            color: var(--emas);
+        }
+
+        .nav-links {
+            display: none; /* Hidden on mobile */
+            list-style: none;
+            gap: var(--space-lg);
+        }
+
+        .nav-links a {
+            color: var(--putih);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--font-base);
+            transition: all 0.3s;
+            position: relative;
+            padding: var(--space-xs) 0;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            color: var(--emas);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--emas);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: flex;
+            color: var(--putih);
+            font-size: var(--font-xl);
+            cursor: pointer;
+            min-width: 48px;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--radius-md);
+            border: none;
+        }
+
+        /* Mobile Menu Active State */
+        .nav-links.active {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--hijau-tua);
+            flex-direction: column;
+            padding: var(--space-md);
+            gap: var(--space-sm);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Hero Section - Fluid Scaling */
+        .hero {
+            margin-top: 70px;
+            min-height: 100vh;
+            min-height: 100dvh; /* Dynamic viewport height for mobile */
+            background: 
+                linear-gradient(135deg, rgba(15, 61, 46, 0.9) 0%, rgba(45, 106, 79, 0.85) 50%, rgba(139, 90, 43, 0.8) 100%),
+                url('https://images.unsplash.com/photo-1589308078059-be1415eab4c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--putih);
+            position: relative;
+            overflow: hidden;
+            padding: var(--space-md);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: min(100%, 900px);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201, 162, 39, 0.2);
+            border: 2px solid var(--emas);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: 50px;
+            margin-bottom: var(--space-md);
+            font-size: var(--font-xs);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: var(--font-3xl);
+            margin-bottom: var(--space-md);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--emas);
+            display: block;
+            font-size: var(--font-lg);
+            margin-top: var(--space-xs);
+            font-weight: 300;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero p {
+            font-size: var(--font-base);
+            margin-bottom: var(--space-lg);
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: var(--font-sm);
+            min-height: 48px; /* Touch target */
+            min-width: 140px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--emas), #b8941f);
+            color: var(--hijau-tua);
+            border: 2px solid var(--emas);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(201, 162, 39, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--putih);
+            border: 2px solid var(--putih);
+        }
+
+        .btn-secondary:hover {
+            background: var(--putih);
+            color: var(--hijau-tua);
+        }
+
+        /* Section Styles - Container Queries */
+        section {
+            padding: var(--space-2xl) var(--space-md);
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            width: min(100%, 800px);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: var(--font-2xl);
+            color: var(--hijau-tua);
+            margin-bottom: var(--space-sm);
+            position: relative;
+            display: inline-block;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--emas), var(--coklat-muda));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--hijau-muda);
+            font-size: var(--font-base);
+            margin-top: var(--space-md);
+            line-height: 1.6;
+        }
+
+        /* Sejarah Section */
+        .sejarah {
+            background: 
+                linear-gradient(to bottom, rgba(254, 250, 224, 0.95), rgba(254, 250, 224, 0.98)),
+                url('https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            position: relative;
+        }
+
+        .sejarah-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+            width: var(--container-xl);
+            margin: 0 auto;
+        }
+
+        @container (min-width: 768px) {
+            .sejarah-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @container (min-width: 1024px) {
+            .sejarah-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .sejarah-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: var(--space-lg);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.4s;
+            border: 1px solid rgba(139, 90, 43, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sejarah-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--emas), var(--coklat-muda));
+        }
+
+        .sejarah-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .sejarah-card i {
+            font-size: var(--font-2xl);
+            margin-bottom: var(--space-sm);
+            background: linear-gradient(135deg, var(--emas), var(--coklat-muda));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sejarah-card h3 {
+            color: var(--hijau-tua);
+            margin-bottom: var(--space-xs);
+            font-size: var(--font-lg);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .sejarah-card p {
+            font-size: var(--font-sm);
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Timeline - Responsive */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: var(--space-xl);
+            width: var(--container-lg);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--emas), var(--coklat-muda));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--space-lg);
+            padding-left: var(--space-lg);
+            background: rgba(255,255,255,0.9);
+            padding: var(--space-md);
+            padding-left: var(--space-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            background: var(--emas);
+            border-radius: 50%;
+            border: 3px solid var(--putih);
+            box-shadow: 0 0 0 3px var(--emas);
+        }
+
+        .timeline-item h4 {
+            color: var(--hijau-tua);
+            margin-bottom: var(--space-xs);
+            font-size: var(--font-base);
+        }
+
+        .timeline-item p {
+            font-size: var(--font-sm);
+            color: #666;
+        }
+
+        /* Budaya Section */
+        .budaya {
+            background: 
+                linear-gradient(135deg, rgba(45, 106, 79, 0.95), rgba(15, 61, 46, 0.98)),
+                url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            color: var(--putih);
+        }
+
+        .budaya .section-title {
+            color: var(--putih);
+        }
+
+        .budaya .section-title::after {
+            background: var(--emas);
+        }
+
+        .budaya .section-subtitle {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .budaya-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+            width: var(--container-xl);
+            margin: 0 auto;
+        }
+
+        @container (min-width: 768px) {
+            .budaya-container {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-2xl);
+            }
+        }
+
+        .budaya-image {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-2xl);
+            transform: rotate(-2deg);
+            transition: all 0.4s;
+            aspect-ratio: 4/3;
+        }
+
+        .budaya-image:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .budaya-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .budaya-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(15, 61, 46, 0.4), transparent);
+        }
+
+        .budaya-content h3 {
+            color: var(--emas);
+            font-size: var(--font-2xl);
+            margin-bottom: var(--space-md);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .budaya-content p {
+            margin-bottom: var(--space-md);
+            font-size: var(--font-base);
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .tradisi-list {
+            list-style: none;
+            margin-top: var(--space-md);
+        }
+
+        .tradisi-list li {
+            padding: var(--space-sm) 0;
+            padding-left: var(--space-lg);
+            position: relative;
+            font-size: var(--font-base);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tradisi-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--emas);
+            font-size: var(--font-base);
+        }
+
+        /* Makanan Section - Container Query Grid */
+        .makanan {
+            background: 
+                linear-gradient(to bottom, rgba(255,255,255,0.98), rgba(254, 250, 224, 0.98)),
+                url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+        }
+
+        .makanan-wrapper {
+            width: var(--container-2xl);
+            margin: 0 auto;
+            container-type: inline-size;
+        }
+
+        .makanan-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+        }
+
+        @container (min-width: 480px) {
+            .makanan-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @container (min-width: 768px) {
+            .makanan-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @container (min-width: 1024px) {
+            .makanan-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @container (min-width: 1280px) {
+            .makanan-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .makanan-card {
+            background: var(--putih);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.4s;
+            border: 1px solid rgba(139, 90, 43, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .makanan-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .makanan-img {
+            height: clamp(180px, 25cqw, 250px);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .makanan-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5));
+        }
+
+        .makanan-badge {
+            position: absolute;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            background: var(--emas);
+            color: var(--hijau-tua);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: var(--font-xs);
+            z-index: 2;
+        }
+
+        .makanan-content {
+            padding: var(--space-md);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .makanan-content h3 {
+            color: var(--hijau-tua);
+            margin-bottom: var(--space-xs);
+            font-size: var(--font-lg);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .makanan-content .asal {
+            color: var(--coklat-tanah);
+            font-size: var(--font-xs);
+            margin-bottom: var(--space-sm);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .makanan-content p {
+            font-size: var(--font-sm);
+            color: #555;
+            margin-bottom: var(--space-sm);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-sm);
+            background: linear-gradient(135deg, var(--hijau-cerah), var(--hijau-muda));
+            color: var(--putih);
+            border-radius: 20px;
+            font-size: var(--font-xs);
+            font-weight: 500;
+        }
+
+        /* Wilayah Section */
+        .peta-budaya {
+            background: 
+                linear-gradient(135deg, rgba(15, 61, 46, 0.98), rgba(45, 106, 79, 0.98)),
+                url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            color: var(--putih);
+        }
+
+        .peta-budaya .section-title {
+            color: var(--putih);
+        }
+
+        .peta-budaya .section-title::after {
+            background: var(--emas);
+        }
+
+        .peta-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+            align-items: start;
+            width: var(--container-xl);
+            margin: 0 auto;
+        }
+
+        @container (min-width: 768px) {
+            .peta-container {
+                grid-template-columns: 1fr 2fr;
+                gap: var(--space-xl);
+            }
+        }
+
+        .daftar-wilayah {
+            background: rgba(255,255,255,0.1);
+            padding: var(--space-md);
+            border-radius: var(--radius-xl);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .wilayah-item {
+            padding: var(--space-md);
+            margin-bottom: var(--space-sm);
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            min-height: 48px;
+        }
+
+        .wilayah-item:hover, .wilayah-item.active {
+            background: rgba(255,255,255,0.2);
+            border-left-color: var(--emas);
+            transform: translateX(5px);
+        }
+
+        .wilayah-item h4 {
+            margin-bottom: var(--space-xs);
+            color: var(--emas);
+            font-size: var(--font-base);
+        }
+
+        .wilayah-item p {
+            font-size: var(--font-sm);
+            opacity: 0.9;
+        }
+
+        .peta-visual {
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            min-height: clamp(300px, 40vh, 500px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .peta-content {
+            text-align: center;
+            animation: fadeInUp 0.5s;
+        }
+
+        .peta-content i {
+            font-size: clamp(3rem, 5vw, 5rem);
+            color: var(--emas);
+            margin-bottom: var(--space-md);
+        }
+
+        .peta-content h3 {
+            color: var(--emas);
+            margin-bottom: var(--space-sm);
+            font-size: var(--font-xl);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .peta-content p {
+            font-size: var(--font-base);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+            max-width: 500px;
+        }
+
+        .peta-stats {
+            background: rgba(255,255,255,0.1);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-lg);
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: var(--font-sm);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: 
+                linear-gradient(135deg, rgba(139, 90, 43, 0.95), rgba(212, 163, 115, 0.95)),
+                url('https://images.unsplash.com/photo-1544376798-89aa6b82c6cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            color: var(--putih);
+            text-align: center;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        .quote-section blockquote {
+            font-size: var(--font-xl);
+            font-style: italic;
+            max-width: min(90%, 800px);
+            margin: 0 auto;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .quote-section blockquote::before,
+        .quote-section blockquote::after {
+            content: '"';
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--emas);
+            position: absolute;
+            opacity: 0.5;
+        }
+
+        .quote-section blockquote::before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .quote-section blockquote::after {
+            bottom: -40px;
+            right: -20px;
+            transform: rotate(180deg);
+        }
+
+        .quote-section p {
+            margin-top: var(--space-lg);
+            font-size: var(--font-base);
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: 
+                linear-gradient(135deg, rgba(15, 61, 46, 0.98), rgba(10, 40, 30, 0.98)),
+                url('https://images.unsplash.com/photo-1518495973542-7d76c9f0d3a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: var(--putih);
+            padding: var(--space-2xl) var(--space-md) var(--space-lg);
+            border-top: 3px solid var(--emas);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            width: var(--container-2xl);
+            margin: 0 auto;
+            margin-bottom: var(--space-xl);
+        }
+
+        @container (min-width: 480px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @container (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-section h3 {
+            color: var(--emas);
+            margin-bottom: var(--space-md);
+            font-size: var(--font-lg);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            line-height: 1.8;
+            font-size: var(--font-sm);
+            transition: all 0.3s;
+            display: block;
+            margin-bottom: var(--space-xs);
+        }
+
+        .footer-section a:hover {
+            color: var(--emas);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+
+        .social-links a {
+            width: clamp(40px, 5vw, 48px);
+            height: clamp(40px, 5vw, 48px);
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: var(--font-base);
+        }
+
+        .social-links a:hover {
+            background: var(--emas);
+            transform: translateY(-3px);
+            border-color: var(--emas);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-lg);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: var(--font-xs);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        
+        /* Aspect Ratio Utilities */
+        .aspect-video { aspect-ratio: 16/9; }
+        .aspect-square { aspect-ratio: 1/1; }
+        .aspect-portrait { aspect-ratio: 3/4; }
+
+        /* Touch Device Optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .btn-primary:hover, .btn-secondary:hover {
+                transform: none;
+            }
+            
+            .sejarah-card:hover, .makanan-card:hover {
+                transform: none;
+            }
+            
+            .budaya-image:hover {
+                transform: rotate(-2deg);
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            header, .mobile-menu, .btn-group, .social-links {
+                display: none !important;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding: 2rem;
+            }
+            
+            section {
+                padding: 2rem 1rem;
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Desktop Navigation - Media Query */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: none;
+            }
+            
+            .nav-links.active {
+                position: static;
+                flex-direction: row;
+                background: transparent;
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+
+        /* Large Screen Optimizations */
+        @media (min-width: 1920px) {
+            :root {
+                --font-base: 1.125rem;
+            }
+            
+            section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
+
+        /* High DPI/Retina Screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .hero, .sejarah, .budaya, .makanan, .peta-budaya, .quote-section, footer {
+                background-size: cover;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>Urang Sunda</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#sejarah">Sajarah</a></li>
+                <li><a href="#budaya">Budaya</a></li>
+                <li><a href="#makanan">Kadaharan</a></li>
+                <li><a href="#wilayah">Wilayah</a></li>
+            </ul>
+            <button class="mobile-menu" onclick="toggleMenu()" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Warisan Budaya UNESCO</div>
+            <h1>
+                Warisan Urang Sunda
+                <span>Ti Abad ka-10 dugi ka Kiwari</span>
+            </h1>
+            <p>Paluruh budaya, tradisi, jeung kadaharan khas tanah Pasundan anu kaya rasa jeung harti. Rasakeun keunikan anu geus diturunkeun ti karuhun.</p>
+            <div class="btn-group">
+                <a href="#makanan" class="btn-primary">
+                    Papernah Kadaharan <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#budaya" class="btn-secondary">
+                    <i class="fas fa-play-circle"></i> Paluruh Budaya
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sejarah Section -->
+    <section id="sejarah" class="sejarah scroll-reveal container-query">
+        <div class="section-header">
+            <h2 class="section-title">Sajarah Urang Sunda</h2>
+            <p class="section-subtitle">Jejak budaya ti jaman karajaan dugi ka kiwari</p>
+        </div>
+        
+        <div class="sejarah-grid">
+            <div class="sejarah-card">
+                <i class="fas fa-scroll"></i>
+                <h3>Prasasti Panggumulan (902 M)</h3>
+                <p>Bukti arkeologis panganan Sunda ti abad ka-10. Aya istilah "rumwah-rumwah" (lalap mentah), "kuluban" (lalap rebus), jeung "tetis" (sambal).</p>
+            </div>
+            <div class="sejarah-card">
+                <i class="fas fa-book"></i>
+                <h3>Sanghyang Siksa Kandang Karesian</h3>
+                <p>Naskah Sunda abad ka-16 anu ngadokumentasikeun tradisi "kalingana asak deung atah" (mentah jeung masak).</p>
+            </div>
+            <div class="sejarah-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Tradisi Ngaliwet</h3>
+                <p>Tradisi masak nasi make bumbu dina kastrol beusi, simbol kebersamaan dina acara adat.</p>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>Abad ka-10</h4>
+                <p>Masyarakat ngawangun tradisi lalapan ti tumbuhan lokal di perkarangan imah.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Masa Kolonial</h4>
+                <p>Singkong (sampeu) jadi panganan alternatif, lahirna olahan kawas cilok, cireng, comro.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Kiwari</h4>
+                <p>Warisan kuliner dijaga jeung dikembangkeun jadi daya tarik wisata gastronomi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Budaya Section -->
+    <section id="budaya" class="budaya scroll-reveal container-query">
+        <div class="section-header">
+            <h2 class="section-title">Budaya jeung Nilai-Nilai</h2>
+            <p class="section-subtitle">Filosofi hirup Urang Sunda</p>
+        </div>
+
+        <div class="budaya-container">
+            <div class="budaya-image">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Tradisi Sunda" loading="lazy">
+            </div>
+            <div class="budaya-content">
+                <h3>"Titi Gantung, Tali Rasa"</h3>
+                <p>Urang Sunda dipikahormat ku nilai-nilai:</p>
+                <ul class="tradisi-list">
+                    <li><strong>Silaturahmi:</strong> Ngaliwet dina acara wilujengan, ngahiji rasa.</li>
+                    <li><strong>Reciprocity:</strong> Lalapan simbol hubungan manusa jeung alam.</li>
+                    <li><strong>Kreativitas:</strong> Olahan sampeu jadi aneka rupa kadaharan.</li>
+                    <li><strong>Simplicity:</strong> Rasa murni tina bahan alami.</li>
+                </ul>
+                <p style="margin-top: var(--space-md); font-style: italic; color: var(--emas);">
+                    "Hidangkeun lalapan teh lain ngan makan, tapi ngarasakeun kesehatan jeung hubungan jeung alam."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Makanan Section -->
+    <section id="makanan" class="makanan scroll-reveal">
+        <div class="section-header">
+            <h2 class="section-title">Kadaharan Khas Sunda</h2>
+            <p class="section-subtitle">Rasa autentik ti tatar Sunda</p>
+        </div>
+
+        <div class="makanan-wrapper">
+            <div class="makanan-grid">
+                <!-- Nasi Liwet -->
+                <div class="makanan-card">
+                    <div class="makanan-img" style="background-image: url('https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="makanan-badge">Tradisi</div>
+                    </div>
+                    <div class="makanan-content">
+                        <h3>Nasi Liwet</h3>
+                        <div class="asal"><i class="fas fa-map-marker-alt"></i> Tradisi Ngaliwet</div>
+                        <p>Nasi dimasak make bawang, sereh, jeung daun salam dina kastrol beusi.</p>
+                        <div class="tag-container">
+                            <span class="tag">Acara Adat</span>
+                            <span class="tag">Kebersamaan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sate Maranggi -->
+                <div class="makanan-card">
+                    <div class="makanan-img" style="background-image: url('https://images.unsplash.com/photo-1567333126229-92a0c7b5d6d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="makanan-badge">Purwakarta</div>
+                    </div>
+                    <div class="makanan-content">
+                        <h3>Sate Maranggi</h3>
+                        <div class="asal"><i class="fas fa-map-marker-alt"></i> Purwakarta</div>
+                        <p>Daging sapi direndem bumbu sateu acan ditusuk, dicocol ku bawang beusi.</p>
+                        <div class="tag-container">
+                            <span class="tag">Daging Pilihan</span>
+                            <span class="tag">Tanpa Saus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nasi Tutug Oncom -->
+                <div class="makanan-card">
+                    <div class="makanan-img" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="makanan-badge">Tasikmalaya</div>
+                    </div>
+                    <div class="makanan-content">
+                        <h3>Nasi Tutug Oncom</h3>
+                        <div class="asal"><i class="fas fa-map-marker-alt"></i> Tasikmalaya</div>
+                        <p>"Tutug" hartina numbuk. Nasi anget diaduk jeung oncom bakar.</p>
+                        <div class="tag-container">
+                            <span class="tag">Olahan Oncom</span>
+                            <span class="tag">Sederhana</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mi Kocok -->
+                <div class="makanan-card">
+                    <div class="makanan-img" style="background-image: url('https://images.unsplash.com/photo-1552611052-33e04de081de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="makanan-badge">Bandung</div>
+                    </div>
+                    <div class="makanan-content">
+                        <h3>Mi Kocok</h3>
+                        <div class="asal"><i class="fas fa-map-marker-alt"></i> Bandung</div>
+                        <p>Mi kuning pipih dikocok-kocok dina cai panas, disajikeun jeung kaldu sapi.</p>
+                        <div class="tag-container">
+                            <span class="tag">Kuah Kaldu</span>
+                            <span class="tag">Tekstur Lembut</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cireng -->
+                <div class="makanan-card">
+                    <div class="makanan-img" style="background-image: url('https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="makanan-badge">Jajanan</div>
+                    </div>
+                    <div class="makanan-content">
+                        <h3>Cireng</h3>
+                        <div class="asal"><i class="fas fa-map-marker-alt"></i> Jawa Barat</div>
+                        <p>"Aci digoreng" - jajanan tina tepung tapioka anu digoreng garing.</p>
+                        <div class="tag-container">
+                            <span class="tag">Jajanan</span>
+                            <span class="tag">Sampeu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bandrek -->
+                <div class="makanan-card">
+                    <div class="makanan-img" style="background-image: url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="makanan-badge">Priangan</div>
+                    </div>
+                    <div class="makanan-content">
+                        <h3>Bandrek</h3>
+                        <div class="asal"><i class="fas fa-map-marker-alt"></i> Priangan</div>
+                        <p>Inuman anget tina jahe, gula batu, jeung santan.</p>
+                        <div class="tag-container">
+                            <span class="tag">Inuman Anget</span>
+                            <span class="tag">Jahe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wilayah Section -->
+    <section id="wilayah" class="peta-budaya scroll-reveal container-query">
+        <div class="section-header">
+            <h2 class="section-title">Wilayah Budaya</h2>
+            <p class="section-subtitle">Keunikan ti unggal wewengkon</p>
+        </div>
+
+        <div class="peta-container">
+            <div class="daftar-wilayah">
+                <div class="wilayah-item active" onclick="showWilayah('bogor')">
+                    <h4>Bogor - Kota Hujan</h4>
+                    <p>Produsen sampeu jeung cilok, cireng.</p>
+                </div>
+                <div class="wilayah-item" onclick="showWilayah('bandung')">
+                    <h4>Bandung - Parahyangan</h4>
+                    <p>Mi Kocok, kopi, jeung industri kreatif.</p>
+                </div>
+                <div class="wilayah-item" onclick="showWilayah('purwakarta')">
+                    <h4>Purwakarta</h4>
+                    <p>Sate Maranggi jeung tradisi rengkong.</p>
+                </div>
+                <div class="wilayah-item" onclick="showWilayah('tasik')">
+                    <h4>Tasikmalaya</h4>
+                    <p>Nasi Tutug Oncom jeung kerajinan anyaman.</p>
+                </div>
+                <div class="wilayah-item" onclick="showWilayah('cirebon')">
+                    <h4>Cirebon - Pantura</h4>
+                    <p>Getuk, ciwel, jeung pengaruh Cina-Jawa.</p>
+                </div>
+            </div>
+            <div class="peta-visual" id="petaDisplay">
+                <div class="peta-content">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Pilih Wilayah</h3>
+                    <p>Klik wilayah di kiri pikeu ningali informasi detail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <blockquote>
+            "Sing saha anu nyuhunkeun, ulah ditolak. Sing saha anu masihan, ulah dipungkir."
+        </blockquote>
+        <p>- Pepeling Urang Sunda</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Urang Sunda</h3>
+                <p>Media pelestarian budaya jeung kadaharan tradisional tanah Pasundan.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Tautan</h3>
+                <a href="#sejarah">Sajarah</a>
+                <a href="#budaya">Budaya</a>
+                <a href="#makanan">Kadaharan</a>
+                <a href="#wilayah">Wilayah</a>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p><i class="fas fa-envelope"></i> urang.sunda@contoh.com</p>
+                <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+                <p><i class="fas fa-map-marker-alt"></i> Jawa Barat, Indonesia</p>
+            </div>
+            <div class="footer-section">
+                <h3>Dukungan</h3>
+                <p>Website ieu didamel pikeu ngalestarikeun budaya Sunda.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Urang Sunda. Dirgahayu Budaya Sunda.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+            if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Wilayah Interactive
+        function showWilayah(wilayah) {
+            const display = document.getElementById('petaDisplay');
+            const items = document.querySelectorAll('.wilayah-item');
+            
+            items.forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const data = {
+                'bogor': {
+                    icon: 'fas fa-cloud-rain',
+                    title: 'Bogor - Kota Hujan',
+                    desc: 'Loba udan ngahasilkeun taneh subur. Sampeu (singkong) jadi bahan pangan utama. Lahirna cilok, cireng, comro, jeung misro.',
+                    stats: 'Produksi Sampeu: 125.461 ton/tahun'
+                },
+                'bandung': {
+                    icon: 'fas fa-mountain',
+                    title: 'Bandung - Parahyangan',
+                    desc: 'Dataran luhur anu sejuk. Kasohor ku Mi Kocok anu teksturna lembut. Pusat inuman bandrek jeung bajigur.',
+                    stats: 'Ketinggian: 768 m dpl'
+                },
+                'purwakarta': {
+                    icon: 'fas fa-fire-burner',
+                    title: 'Purwakarta',
+                    desc: 'Kampung halaman Sate Maranggi. Daging direndem bumbu sateu acan ditusuk, dicocol ku bawang beusi.',
+                    stats: 'Sate Maranggi: 150+ warung'
+                },
+                'tasik': {
+                    icon: 'fas fa-mortar-pestle',
+                    title: 'Tasikmalaya',
+                    desc: 'Asalna Nasi Tutug Oncom. Tradisi "tutug" atawa numbuk oncom jeung nasi. Kasohor ogé ku anyaman.',
+                    stats: 'Sentra Anyaman: Cibeureum'
+                },
+                'cirebon': {
+                    icon: 'fas fa-water',
+                    title: 'Cirebon - Pantura',
+                    desc: 'Pengaruh budaya Cina jeung Jawa. Kasohor ku getuk, ciwel, jeung tahu gejrot.',
+                    stats: 'Keraton: Kanoman & Kasepuhan'
+                }
+            };
+
+            const info = data[wilayah];
+            display.innerHTML = `
+                <div class="peta-content">
+                    <i class="${info.icon}"></i>
+                    <h3>${info.title}</h3>
+                    <p>${info.desc}</p>
+                    <div class="peta-stats">
+                        <i class="fas fa-chart-bar"></i> ${info.stats}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Active Nav on Scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--emas)';
+                }
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.wilayah-item').click();
+        });
+    </script>
+</body>
+</html>
